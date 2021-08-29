@@ -1,0 +1,62 @@
+.source-wrap {
+    display: flex;
+    flex-direction: row;
+}
+.formulas {
+    display: block;
+    padding: 1px;
+    background-color: yellowgreen;
+}
+.choice-transf {
+    padding: 10px;
+}
+.choice-transf-result {
+    display: flex;
+    flex-direction: row;
+    width: 220px;
+    height: 60px;
+    margin: 0px;
+    padding: 5px;
+    background-color: green;
+}
+.source {
+    margin-bottom: 8px;
+}
+.result-item,
+.equally,
+.measure{
+    height: 50px;
+    align-self: center;
+    text-align: center;
+    padding: 5px;
+}
+.result-item-two,
+.result-item-three {
+    margin-left: 5px;
+    max-width: 80px;
+    align-self: center;
+}
+
+.result-item-three {
+    max-width: 60px;
+}
+.nominator,
+.denominator,
+.result {
+    width: 40px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.line {
+    width: 40px;
+    height: 2px;
+    border-bottom: solid 2px black;
+}
+.sqrt {
+    border-top: 1px solid #525252;
+}
+.sqrt-block {
+    display: flex;
+}

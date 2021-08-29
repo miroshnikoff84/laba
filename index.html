@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Laba</title>
+</head>
+<body>
+<section class="choice-transf">
+    <div class="source-wrap">
+        <div class="sources">
+            <div class="source">
+                <div class="source-title">
+                    <math>
+                        <mrow>
+                            <msub>
+                                <mi>P</mi>
+                                <mrow>
+                                    <mi>&#x043D;</mi>
+                                    <mn>1</mn>
+                                </mrow>
+                            </msub>
+                        </mrow>
+                    </math>
+                </div>
+                <input type="text" class="input-pn1" placeholder="Мощность нагрузки 1" value="120">
+            </div>
+            <div class="source">
+                <div class="source-title">
+                    <math>
+                        <mrow>
+                            <msub>
+                                <mi>P</mi>
+                                <mrow>
+                                    <mi>&#x043D;</mi>
+                                    <mn>2</mn>
+                                </mrow>
+                            </msub>
+                        </mrow>
+                    </math>
+                </div>
+                <input type="text" class="input-pn2" placeholder="Мощность нагрузки 2" value="150">
+            </div>
+            <div class="source">
+                <div class="source-title">
+                    <math>
+                        <mrow>
+                            <msub>
+                                <mi>L</mi>
+                                <mrow>
+                                    <mn>1</mn>
+                                </mrow>
+                            </msub>
+                        </mrow>
+                    </math>
+                </div>
+                <input type="text" class="input-length-one" placeholder="Длина ЛЭП L1" value="80">
+            </div>
+            <div class="source">
+                <div class="source-title">
+                    <math>
+                        <mrow>
+                            <msub>
+                                <mi>L</mi>
+                                <mrow>
+                                    <mn>2</mn>
+                                </mrow>
+                            </msub>
+                        </mrow>
+                    </math>
+                </div>
+                <input type="text" class="input-length-two" placeholder="Длина ЛЭП L2" value="70">
+            </div>
+            <div class="source">
+                <div class="source-title">
+                    <math>
+                        <mrow>
+                            <msub>
+                                <mi>L</mi>
+                                <mrow>
+                                    <mn>3</mn>
+                                </mrow>
+                            </msub>
+                        </mrow>
+                    </math>
+                </div>
+                <input type="text" class="input-length-three" placeholder="Длина ЛЭП L3" value="60">
+            </div>
+            <div class="source">
+                <div class="source-title">Напряжение сети U<sub>A</sub></div>
+                <input type="text" class="input-voltage-line" placeholder="Напряжение сети" value="242">
+            </div>
+            <div class="source">
+                <div class="source-title">cos φ</div>
+                <input type="text" class="input-power-factor" placeholder="Коэфф.мощности" value="0.82">
+            </div>
+        </div>
+    </div>
+    <button class="btn">Go</button>
+    <div class="chapter"><p>1.1. Расчет предварительных значений перетоков
+        мощностей.</p></div>
+
+    <div class="formulas">
+        <div class="formula-sn">
+            <math display='block'>
+                <mrow>
+                    <msub>
+                        <mi>S</mi>
+                        <mi>&#x043D;</mi>
+                    </msub>
+                    <mo>=</mo>
+                    <mfrac>
+                        <mrow>
+                            <msub>
+                                <mi>P</mi>
+                                <mi>&#x043D;</mi>
+                            </msub>
+                        </mrow>
+                        <mrow>
+                            <mi>cos</mi>
+                            <msub>
+                                <mi>&#x03C6;</mi>
+                                <mi>&#x043D;</mi>
+                            </msub>
+                        </mrow>
+                    </mfrac>
+                </mrow>
+            </math>
+        </div>
+        <div class="formula-qn">
+            <math display='block'>
+                <mrow>
+                    <msub>
+                        <mi>Q</mi>
+                        <mi>&#x043D;</mi>
+                    </msub>
+                    <mo>=</mo>
+                    <msqrt>
+                        <mrow>
+                            <msub>
+                                <mi>S</mi>
+                                <mi>&#x043D;</mi>
+                            </msub>
+                            <msup>
+                                <mrow></mrow>
+                                <mn>2</mn>
+                            </msup>
+                            <mo>-</mo>
+                            <msub>
+                                <mi>P</mi>
+                                <mi>&#x043D;</mi>
+                            </msub>
+                            <msup>
+                                <mrow></mrow>
+                                <mn>2</mn>
+                            </msup>
+                        </mrow>
+                    </msqrt>
+                </mrow>
+            </math>
+
+        </div>
+        <div class="formula-sn1">
+            <math display='block'>
+                <mrow>
+                    <msub>
+                        <mi>S</mi>
+                        <mrow>
+                            <mi>&#x043D;</mi>
+                            <mn>1</mn>
+                        </mrow>
+                    </msub>
+                    <mo>=</mo>
+                    <mfrac>
+                        <mn class="pn1">0</mn>
+                        <mn class="powerFactor">0</mn>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mn class="sn1">0</mn>
+                    <mi>&#x041C;</mi>
+                    <mi>&#x0412;</mi>
+                    <mi>&#x0410;</mi>
+                </mrow>
+            </math>
+
+
+        </div>
+        <div class="formula-qn1">
+            <math display='block'>
+                <mrow>
+                    <msub>
+                        <mi>Q</mi>
+                        <mrow>
+                            <mi>&#x043D;</mi>
+                            <mn>1</mn>
+                        </mrow>
+                    </msub>
+                    <mo>=</mo>
+                    <msqrt>
+                        <mrow>
+                            <msup>
+                                <mn class="sn1">0</mn>
+                                <mn>2</mn>
+                            </msup>
+                            <mo>-</mo>
+                            <msup>
+                                <mn class="pn1">0</mn>
+                                <mn>2</mn>
+                            </msup>
+                        </mrow>
+                    </msqrt>
+                    <mo>=</mo>
+                    <mn class="qn1">0</mn>
+                    <mi>&#x041C;</mi>
+                    <mi>&#x0432;</mi>
+                    <mi>&#x0430;</mi>
+                    <mi>&#x0440;</mi>
+                </mrow>
+            </math>
+
+
+        </div>
+        <div class="formula-sn2">
+            <math display='block'>
+                <mrow>
+                    <msub>
+                        <mi>S</mi>
+                        <mrow>
+                            <mi>&#x043D;</mi>
+                            <mn>2</mn>
+                        </mrow>
+                    </msub>
+                    <mo>=</mo>
+                    <mfrac>
+                        <mn class="pn2">0</mn>
+                        <mn class="powerFactor">0</mn>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mn class="sn2">0</mn>
+                    <mi>&#x041C;</mi>
+                    <mi>&#x0412;</mi>
+                    <mi>&#x0410;</mi>
+                </mrow>
+            </math>
+
+
+        </div>
+        <div class="formula-qn2">
+            <math display='block'>
+                <mrow>
+                    <msub>
+                        <mi>Q</mi>
+                        <mrow>
+                            <mi>&#x043D;</mi>
+                            <mn>2</mn>
+                        </mrow>
+                    </msub>
+                    <mo>=</mo>
+                    <msqrt>
+                        <mrow>
+                            <msup>
+                                <mn class="sn2">0</mn>
+                                <mn>2</mn>
+                            </msup>
+                            <mo>-</mo>
+                            <msup>
+                                <mn class="pn2">0</mn>
+                                <mn>2</mn>
+                            </msup>
+                        </mrow>
+                    </msqrt>
+                    <mo>=</mo>
+                    <mn class="qn2">0</mn>
+                    <mi>&#x041C;</mi>
+                    <mi>&#x0432;</mi>
+                    <mi>&#x0430;</mi>
+                    <mi>&#x0440;</mi>
+                </mrow>
+            </math>
+
+
+        </div>
+    </div>
+</section>
+
+
+<script src="js/script.js"></script>
+</body>
+</html>
