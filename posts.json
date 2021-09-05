@@ -1,9 +1,46 @@
 {
-  "posts" : [
+  "transformer": [
     {
-      "id" : 1,
-      "name" : "Ivan",
-      "number" : "789999999"
+      "voltage": 220,
+      "type": "ТРЦД-220",
+      "power": 60,
+      "nominalVoltageHigh": 230,
+      "nominalVoltageLow": 11,
+      "idlingLosses": null,
+      "shortCircuitLosses": null,
+      "shortCircuitVoltage": null,
+      "noLoadCurrent": null,
+      "chargingPower": 0.96,
+      "resistanceR": 1.08,
+      "reactivityX": 39.7
+    },
+    {
+      "voltage": 110,
+      "type": "ТРДНЦ-110",
+      "power": 70,
+      "nominalVoltageHigh": 110,
+      "nominalVoltageLow": 11,
+      "idlingLosses": null,
+      "shortCircuitLosses": null,
+      "shortCircuitVoltage": null,
+      "noLoadCurrent": null,
+      "chargingPower": 0.96,
+      "resistanceR": 1.08,
+      "reactivityX": 39.7
+    },
+    {
+      "voltage" : 35,
+      "type": "MT-35/100",
+      "power": 50,
+      "nominalVoltageHigh": 230,
+      "nominalVoltageLow": 11,
+      "idlingLosses": null,
+      "shortCircuitLosses": null,
+      "shortCircuitVoltage": null,
+      "noLoadCurrent": null,
+      "chargingPower": 0.96,
+      "resistanceR": 1.08,
+      "reactivityX": 39.7
     }
   ]
 }
