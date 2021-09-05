@@ -60,3 +60,30 @@
 .sqrt-block {
     display: flex;
 }
+.table-transformer {
+    margin-top: 20px;
+    text-decoration: none;
+    border-collapse:collapse;
+    width:100%;
+    text-align:center;
+}
+.table-transformer th{
+    font-weight:normal;
+    font-size:14px;
+    color:#ffffff;
+    background-color:#000000;
+}
+.table-transformer td{
+    font-size:18px;color:#000000;
+}
+.table-transformer td,.table-transformer th{
+    padding:10px 5px;
+    vertical-align: middle;
+    border: 1px solid #000000;
+}
+.table-transformer tr:hover{
+    background-color:#f9fafb
+}
+.table-transformer tr:hover td{
+    color:#000000;cursor:default;
+}

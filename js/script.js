@@ -1,11 +1,10 @@
 const btnResult = document.querySelector('.btn');
-
-
-
+const loadFactor = 0.7,              // коэфф.загрузки трансформатора в норм.режиме
+      loadFactorAfterCrash = 1.4;    // коэфф.загрузки трансформатора в послеаварийном режиме
 
 
 /////////////////////////////////////////////////////////////////////////
-const powerLoadOne = {
+const powerLoadOne = {               // мощность нагрузки
     pn1: 0,
     qn1: 0,
     sn1: 0
@@ -17,38 +16,35 @@ const powerLoadTwo = {
     sn2: 0
 };
 
-const transformerOne = {
-    nominalPower: null,
+const transformer = {               // трансформатор
+    nominalPower: 160,              // номинальна мощность трансформатора МВА
     limitTune: {
-        level: 0,
-        percent: 0
+        level: 8,                   // +/- количество отпаек РПН
+        percent: 1.5                // %
     },
-    nominalVoltageHigh: null,
-    nominalVoltageLow: null,
-    activeResistanceR: null,
-    reactiveResistanceX: null,
-    reactiveResistanceQ: null
+    nominalVoltageHigh: 230,        // номинальное напряжение высокое кВ
+    nominalVoltageLow: 11,          // номинальное напряжение низкое кВ
+    resistanceR: 1.08,              // активное сопротивление Ом
+    reactivityX: 39.7,              // реактивное сопротивление Ом
+    chargingPower: 0.96,            // зарядная мощность Qx   Мвар
+    reactiveIdlingLosses: null,     // реактивные потери холостого хода ΔQ_X кВар
+    idlingLosses: null,             // потери холостого хода ΔP_X кВт
+    shortCircuitLosses: null,       // потери короткого замыкания ΔP_K кВт
+    shortCircuitVoltage: null,      // напряжение короткого замыкания Uк (%)
+    noLoadCurrent: null             // ток холостого хода I_X (%)
+
 };
 
 
-const transformerTwo = {
-    nominalPower: null,
-    limitTune: {
-        level: 0,
-        percent: 0
-    },
-    nominalVoltageHigh: null,
-    nominalVoltageLow: null,
-    activeResistanceR: null,
-    reactiveResistanceX: null,
-    reactiveResistanceQ: null
+const transformerOne = {
+    __proto__ : transformer
 };
 
 const lineOne = {              //  ЛЭП 1
     length: 0,
     mark: null,
     resistivity: null,              //сопротивление            r0        Ом/км
-    reactiveResistivity: null,      //сопротивление            x0        Ом/км
+    reactivity: null,                //сопротивление            x0        Ом/км
     conductivity: null,             //проводимость             b0        См/км
     fullResistivityR: null,          //сопротивление           R         Ом
     fullResistivityX: null,          //сопротивление           X         Ом
