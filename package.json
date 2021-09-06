@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/miroshnikoff84/laba#readme",
   "dependencies": {
-    "json-server": "^0.16.3"
+    "json-server": "^0.16.3",
+    "pug": "^3.0.2"
   }
 }

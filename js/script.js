@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     const btnResult = document.querySelector('.btn');
-    const output = document.querySelector('.output');
+    const output = document.querySelector('.date-of-transformer');
+
 
     const loadFactor = 0.7,              // коэфф.загрузки трансформатора в норм.режиме
         loadFactorAfterCrash = 1.4;    // коэфф.загрузки трансформатора в послеаварийном режиме
@@ -20,16 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const transformer = {               // трансформатор
-        nominalPower: 160,              // номинальна мощность трансформатора МВА
+        nominalPower: 10,              // номинальна мощность трансформатора МВА
         limitTune: {
-            level: 8,                   // +/- количество отпаек РПН
-            percent: 1.5                // %
+            level: 0,                   // +/- количество отпаек РПН
+            percent: 0                // %
         },
-        nominalVoltageHigh: 230,        // номинальное напряжение высокое кВ
-        nominalVoltageLow: 11,          // номинальное напряжение низкое кВ
-        resistanceR: 1.08,              // активное сопротивление Ом
-        reactivityX: 39.7,              // реактивное сопротивление Ом
-        chargingPower: 0.96,            // зарядная мощность Qx   Мвар
+        nominalVoltageHigh: 0,        // номинальное напряжение высокое кВ
+        nominalVoltageLow: 0,          // номинальное напряжение низкое кВ
+        resistanceR: 0,              // активное сопротивление Ом
+        reactivityX: 0,              // реактивное сопротивление Ом
+        chargingPower: 0,            // зарядная мощность Qx   Мвар
         reactiveIdlingLosses: null,     // реактивные потери холостого хода ΔQ_X кВар
         idlingLosses: null,             // потери холостого хода ΔP_X кВт
         shortCircuitLosses: null,       // потери короткого замыкания ΔP_K кВт
@@ -37,11 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         noLoadCurrent: null             // ток холостого хода I_X (%)
 
     };
-
-
-    const transformerOne = {
-        __proto__: transformer
-    };
+    console.log(transformer.nominalPower);
 
     const lineOne = {              //  ЛЭП 1
         length: 0,
@@ -82,10 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     };
 
-
-    btnResult.addEventListener('click', () => {
-
-
+    btnResult.addEventListener('click', async () => {
         let pn1 = document.querySelectorAll('.pn1'),
             pn2 = document.querySelectorAll('.pn2'),
             qn1 = document.querySelectorAll('.qn1'),
@@ -139,31 +133,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         powerLoadTwo.qn2 = Number.parseFloat(qn2[0].textContent);
 
-        const request = new XMLHttpRequest();
-        request.open('GET', './posts.json');
-        request.setRequestHeader('Content-type', 'application/json');
-        request.send();
-        request.addEventListener('readystatechange', (event) => {
-            let powerDate = powerLoadOne.pn1;
-            if (request.readyState === 4 && request.status === 200) {
-                const data = JSON.parse(request.responseText);
+        let url = './transformers.json';
+        let response = await fetch(url);
 
-                data.transformer.forEach(item => {
-                    if (powerLoadOne.pn1 === item.power && lineVoltage === item.voltage) {
-                        const {
-                            type,
-                            power,
-                            nominalVoltageHigh,
-                            nominalVoltageLow,
-                            idlingLosses,
-                            shortCircuitLosses,
-                            shortCircuitVoltage,
-                            noLoadCurrent,
-                            chargingPower,
-                            resistanceR,
-                            reactivityX
-                        } = item;
-                        output.innerHTML = `
+        if (response.ok) {
+            let data = await response.json();
+
+            data.transformer.forEach(item => {
+                if (powerLoadOne.pn1 === item.power && lineVoltage === item.voltage) {
+                    const {
+                        type,
+                        power,
+                        nominalVoltageHigh,
+                        nominalVoltageLow,
+                        idlingLosses,
+                        shortCircuitLosses,
+                        shortCircuitVoltage,
+                        noLoadCurrent,
+                        chargingPower,
+                        resistanceR,
+                        reactivityX
+                    } = item;
+                    output.innerHTML = `
          <tr>
             <td>${type}</td>
             <td>${power}</td>
@@ -177,22 +168,41 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${resistanceR}</td>
             <td>${reactivityX}</td>
         </tr>`;
-                    }
-                })
+                }
+            })
 
-            }
-        });
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+        ;
 
+        // Определение Pmax
+        let powerMax;
 
-        console.log(powerLoadOne.pn1);
-        console.log(powerLoadTwo.pn2);
-        console.log(powerLoadOne.qn1);
-        console.log(powerLoadTwo.qn2);
-        console.log(lineOne.length);
-        console.log(lineTwo.length);
-        console.log(lineThree.length);
-        console.log(lineVoltage);
+        if(powerLoadOne.pn1 > powerLoadTwo.pn2) {
+            powerMax = powerLoadOne.pn1;
+        }else {
+            powerMax = powerLoadTwo.pn2;
+        }
+        // определение Sтр
+        let quantityTransformer = 2;
+        let powerTransEstimated = Number.parseInt(powerMax / (quantityTransformer * inputPowerFactor * loadFactor)); // Sтр = Smax/n*cosfi*b
+
+        console.log(powerMax);
+        console.log(quantityTransformer);
         console.log(inputPowerFactor);
+        console.log(loadFactor);
+        console.log(powerTransEstimated);
+        // console.log(powerLoadOne.pn1);
+        // console.log(powerLoadTwo.pn2);
+        // console.log(powerLoadOne.qn1);
+        // console.log(powerLoadTwo.qn2);
+        // console.log(lineOne.length);
+        // console.log(lineTwo.length);
+        // console.log(lineThree.length);
+        // console.log(lineVoltage);
+        // console.log(inputPowerFactor);
     });
-});
+})
+;
 
