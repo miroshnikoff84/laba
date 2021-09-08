@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         noLoadCurrent: null             // ток холостого хода I_X (%)
 
     };
-    console.log(transformer.nominalPower);
 
     const lineOne = {              //  ЛЭП 1
         length: 0,
