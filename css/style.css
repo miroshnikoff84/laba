@@ -87,3 +87,7 @@
 .table-transformer tr:hover td{
     color:#000000;cursor:default;
 }
+
+.btn {
+    position: fixed;
+}
