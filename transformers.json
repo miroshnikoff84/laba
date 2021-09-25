@@ -433,6 +433,294 @@
       "chargingPower": 175
     },
     {
+      "voltage" : 110,
+      "type": "ТДНЖ-25000/110",
+      "power": 25,
+      "limitTune": {
+        "level": 9,
+        "percent": 1.78
+      },
+      "nominalVoltageHigh": 115,
+      "nominalVoltageLow": 27.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 120,
+      "idlingLosses": 30,
+      "noLoadCurrent": 0.7,
+      "resistanceR": 2.5,
+      "reactivityX": 55.5,
+      "chargingPower": 175
+    },
+    {
+      "voltage" : 110,
+      "type": "ТД-40000/110",
+      "power": 40,
+      "limitTune": {
+        "level": 2,
+        "percent": 2.5
+      },
+      "nominalVoltageHigh": 121,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 160,
+      "idlingLosses": 30,
+      "noLoadCurrent": 0.65,
+      "resistanceR": 1.46,
+      "reactivityX": 38.4,
+      "chargingPower": 260
+    },
+    {
+      "voltage" : 110,
+      "type": "ТРДН-40000/110",
+      "power": 40,
+      "limitTune": {
+        "level": 9,
+        "percent": 1.78
+      },
+      "nominalVoltageHigh": 115,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 172,
+      "idlingLosses": 36,
+      "noLoadCurrent": 0.65,
+      "resistanceR": 1.4,
+      "reactivityX": 34.7,
+      "chargingPower": 260
+    },
+    {
+      "voltage" : 110,
+      "type": "ТРДЦН-63000/110",
+      "power": 63,
+      "limitTune": {
+        "level": 9,
+        "percent": 1.78
+      },
+      "nominalVoltageHigh": 115,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 260,
+      "idlingLosses": 59,
+      "noLoadCurrent": 0.6,
+      "resistanceR": 0.87,
+      "reactivityX": 22,
+      "chargingPower": 410
+    },
+    {
+      "voltage" : 110,
+      "type": "ТРДЦНК-63000/110",
+      "power": 63,
+      "limitTune": {
+        "level": 9,
+        "percent": 1.78
+      },
+      "nominalVoltageHigh": 115,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 245,
+      "idlingLosses": 59,
+      "noLoadCurrent": 0.6,
+      "resistanceR": 0.8,
+      "reactivityX": 22,
+      "chargingPower": 378
+    },
+    {
+      "voltage" : 110,
+      "type": "ТДЦ-80000/110",
+      "power": 80,
+      "limitTune": {
+        "level": 2,
+        "percent": 2.5
+      },
+      "nominalVoltageHigh": 121,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 310,
+      "idlingLosses": 70,
+      "noLoadCurrent": 0.6,
+      "resistanceR": 0.71,
+      "reactivityX": 19.2,
+      "chargingPower": 480
+    },
+    {
+      "voltage" : 110,
+      "type": "ТРДЦН-80000/110",
+      "power": 80,
+      "limitTune": {
+        "level": 9,
+        "percent": 1.78
+      },
+      "nominalVoltageHigh": 115,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 310,
+      "idlingLosses": 70,
+      "noLoadCurrent": 0.6,
+      "resistanceR": 0.6,
+      "reactivityX": 17.4,
+      "chargingPower": 480
+    },
+    {
+      "voltage" : 110,
+      "type": "ТДЦ-125000/110",
+      "power": 125,
+      "limitTune": {
+        "level": 2,
+        "percent": 2.5
+      },
+      "nominalVoltageHigh": 121,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 400,
+      "idlingLosses": 120,
+      "noLoadCurrent": 0.55,
+      "resistanceR": 0.37,
+      "reactivityX": 12.3,
+      "chargingPower": 687.5
+    },
+    {
+      "voltage" : 110,
+      "type": "ТРДЦН-125000/110",
+      "power": 125,
+      "limitTune": {
+        "level": 9,
+        "percent": 1.78
+      },
+      "nominalVoltageHigh": 115,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 400,
+      "idlingLosses": 100,
+      "noLoadCurrent": 0.55,
+      "resistanceR": 0.4,
+      "reactivityX": 11.1,
+      "chargingPower": 687.5
+    },
+    {
+      "voltage" : 110,
+      "type": "ТДЦ-200000/110",
+      "power": 200,
+      "limitTune": {
+        "level": 2,
+        "percent": 2.5
+      },
+      "nominalVoltageHigh": 121,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 550,
+      "idlingLosses": 170,
+      "noLoadCurrent": 0.5,
+      "resistanceR": 0.2,
+      "reactivityX": 7.7,
+      "chargingPower": 1000
+    },
+    {
+      "voltage" : 110,
+      "type": "ТДЦ-250000/110",
+      "power": 250,
+      "limitTune": {
+        "level": 2,
+        "percent": 2.5
+      },
+      "nominalVoltageHigh": 121,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 640,
+      "idlingLosses": 200,
+      "noLoadCurrent": 0.5,
+      "resistanceR": 0.15,
+      "reactivityX": 6.1,
+      "chargingPower": 1250
+    },
+    {
+      "voltage" : 110,
+      "type": "ТДЦ-400000/110",
+      "power": 400,
+      "limitTune": {
+        "level": 2,
+        "percent": 2.5
+      },
+      "nominalVoltageHigh": 121,
+      "nominalVoltageLow": 20,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 900,
+      "idlingLosses": 320,
+      "noLoadCurrent": 0.45,
+      "resistanceR": 0.08,
+      "reactivityX": 3.8,
+      "chargingPower": 1800
+    },
+    {
+      "voltage" : 150,
+      "type": "ТДН-16000/150",
+      "power": 16,
+      "limitTune": {
+        "level": 8,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 158,
+      "nominalVoltageLow": 11,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 85,
+      "idlingLosses": 21,
+      "noLoadCurrent": 0.8,
+      "resistanceR": 8.3,
+      "reactivityX": 172,
+      "chargingPower": 128
+    },
+    {
+      "voltage" : 150,
+      "type": "ТРДН-32000/150",
+      "power": 32,
+      "limitTune": {
+        "level": 8,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 158,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 145,
+      "idlingLosses": 35,
+      "noLoadCurrent": 0.7,
+      "resistanceR": 3.54,
+      "reactivityX": 82,
+      "chargingPower": 224
+    },
+    {
+      "voltage" : 150,
+      "type": "ТРДН-63000/150",
+      "power": 63,
+      "limitTune": {
+        "level": 8,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 158,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 10.5,
+      "shortCircuitLosses": 235,
+      "idlingLosses": 59,
+      "noLoadCurrent": 0.65,
+      "resistanceR": 1.48,
+      "reactivityX": 41.6,
+      "chargingPower": 410
+    },
+    {
+      "voltage" : 150,
+      "type": "ТЦ-250000/150",
+      "power": 250,
+      "limitTune": {
+        "level": 8,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 165,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 640,
+      "idlingLosses": 190,
+      "noLoadCurrent": 0.5,
+      "resistanceR": 0.3,
+      "reactivityX": 12,
+      "chargingPower": 1250
+    },
+    {
       "voltage" : 220,
       "type": "ТРДН-40000/220",
       "power": 40,
@@ -452,7 +740,7 @@
     },
     {
       "voltage" : 220,
-      "type": "ТРДН-63000/220",
+      "type": "ТРДЦН-63000/220",
       "power": 63,
       "limitTune": {
         "level": 8,
@@ -629,6 +917,240 @@
       "resistanceR": 0.2,
       "reactivityX": 6.7,
       "chargingPower": 3500
+    },
+    {
+      "voltage" : 330,
+      "type": "ТРДНС-40000/330",
+      "power": 40,
+      "limitTune": {
+        "level": 8,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 330,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 180,
+      "idlingLosses": 80,
+      "noLoadCurrent": 1.4,
+      "resistanceR": 12.3,
+      "reactivityX": 299,
+      "chargingPower": 560
+    },
+    {
+      "voltage" : 330,
+      "type": "ТРДЦН-63000/330",
+      "power": 63,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 330,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 265,
+      "idlingLosses": 120,
+      "noLoadCurrent": 0.7,
+      "resistanceR": 7.3,
+      "reactivityX": 190,
+      "chargingPower": 441
+    },
+    {
+      "voltage" : 330,
+      "type": "ТДЦ-125000/330",
+      "power": 125,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 10.5,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 360,
+      "idlingLosses": 145,
+      "noLoadCurrent": 0.5,
+      "resistanceR": 2.78,
+      "reactivityX": 106,
+      "chargingPower": 625
+    },
+    {
+      "voltage" : 330,
+      "type": "ТДЦ-200000/330",
+      "power": 200,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 560,
+      "idlingLosses": 220,
+      "noLoadCurrent": 0.45,
+      "resistanceR": 1.68,
+      "reactivityX": 66.2,
+      "chargingPower": 900
+    },
+    {
+      "voltage" : 330,
+      "type": "ТДЦ-250000/330",
+      "power": 250,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 605,
+      "idlingLosses": 240,
+      "noLoadCurrent": 0.45,
+      "resistanceR": 1.2,
+      "reactivityX": 52.9,
+      "chargingPower": 1125
+    },
+    {
+      "voltage" : 330,
+      "type": "ТДС-400000/330",
+      "power": 400,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 810,
+      "idlingLosses": 365,
+      "noLoadCurrent": 0.4,
+      "resistanceR": 0.6,
+      "reactivityX": 33,
+      "chargingPower": 1600
+    },
+    {
+      "voltage" : 330,
+      "type": "ТЦ-630000/330",
+      "power": 630,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 11,
+      "shortCircuitLosses": 1300,
+      "idlingLosses": 405,
+      "noLoadCurrent": 0.35,
+      "resistanceR": 0.4,
+      "reactivityX": 21,
+      "chargingPower": 2205
+    },
+    {
+      "voltage" : 330,
+      "type": "ТЦ-1000000/330",
+      "power": 1000,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 24,
+      "shortCircuitVoltage": 11.5,
+      "shortCircuitLosses": 2200,
+      "idlingLosses": 480,
+      "noLoadCurrent": 0.4,
+      "resistanceR": 0.26,
+      "reactivityX": 13.2,
+      "chargingPower": 4000
+    },
+    {
+      "voltage" : 330,
+      "type": "ТЦ-1250000/330",
+      "power": 1250,
+      "limitTune": {
+        "level": 1,
+        "percent": 1.5
+      },
+      "nominalVoltageHigh": 347,
+      "nominalVoltageLow": 24,
+      "shortCircuitVoltage": 14,
+      "shortCircuitLosses": 2300,
+      "idlingLosses": 750,
+      "noLoadCurrent": 0.75,
+      "resistanceR": 0.2,
+      "reactivityX": 10.6,
+      "chargingPower": 5375
+    },
+    {
+      "voltage" : 500,
+      "type": "ТДЦ-250000/500",
+      "power": 250,
+      "limitTune": {
+        "level": null,
+        "percent": null
+      },
+      "nominalVoltageHigh": 525,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 13,
+      "shortCircuitLosses": 600,
+      "idlingLosses": 250,
+      "noLoadCurrent": 0.45,
+      "resistanceR": 2.65,
+      "reactivityX": 143,
+      "chargingPower": 1125
+    },
+    {
+      "voltage" : 500,
+      "type": "ТДЦ-400000/500",
+      "power": 400,
+      "limitTune": {
+        "level": null,
+        "percent": null
+      },
+      "nominalVoltageHigh": 525,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 13,
+      "shortCircuitLosses": 800,
+      "idlingLosses": 350,
+      "noLoadCurrent": 0.4,
+      "resistanceR": 1.4,
+      "reactivityX": 89.5,
+      "chargingPower": 1600
+    },
+    {
+      "voltage" : 500,
+      "type": "ТЦ-630000/500",
+      "power": 630,
+      "limitTune": {
+        "level": null,
+        "percent": null
+      },
+      "nominalVoltageHigh": 525,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 14,
+      "shortCircuitLosses": 1300,
+      "idlingLosses": 500,
+      "noLoadCurrent": 0.35,
+      "resistanceR": 0.9,
+      "reactivityX": 61.3,
+      "chargingPower": 2205
+    },
+    {
+      "voltage" : 500,
+      "type": "ТЦ-1000000/500",
+      "power": 1000,
+      "limitTune": {
+        "level": null,
+        "percent": null
+      },
+      "nominalVoltageHigh": 525,
+      "nominalVoltageLow": 15.75,
+      "shortCircuitVoltage": 14.5,
+      "shortCircuitLosses": 2000,
+      "idlingLosses": 600,
+      "noLoadCurrent": 0.38,
+      "resistanceR": 0.55,
+      "reactivityX": 40,
+      "chargingPower": 3800
     }
   ]
 }
