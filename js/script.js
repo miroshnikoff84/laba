@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         LOAD_FACTOR_IN_NORMAL_MODE = 0.7,              // коэфф.загрузки трансформатора в норм.режиме
         LOAD_FACTOR_AFTER_CRASH = 1.4;                   // коэфф.загрузки трансформатора в послеаварийном режиме
-/////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////
     const POWER_LOAD_ONE = {               // мощность нагрузки
         pn1: 0,
         qn1: 0,
@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sn2: 0
     };
 
+
     const TRANSFORMER = {               // трансформатор
-        nominalPower: 100,              // номинальна мощность трансформатора МВА
+        nominalPower: 0,              // номинальна мощность трансформатора МВА
         limitTune: {
             level: 0,                   // +/- количество отпаек РПН
             percent: 0                // %
@@ -78,9 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
         chargingPowerQ: null            //зарядная мощность ЛЭП   Qc        МВар
 
     };
-    //  Выбор количества трансформаторов
-    //let quantityTransformerOne = Number(document.querySelector('.quantity-transformer-one').textContent);
-    //let quantityTransformerTwo = Number(document.querySelector('.quantity-transformer-two').textContent);
+
+
+        //  Выбор количества трансформаторов
     let quantityTransformerOne = 2,
         quantityTransformerTwo = 2;
 
@@ -100,13 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
             checkInNormalModeTwo = document.querySelector('.check-in-normal-mode-two'),
             checkInAfterCrashOne = document.querySelector('.check-in-after-crash-mode-one'),
             checkInAfterCrashTwo = document.querySelector('.check-in-after-crash-mode-two'),
-            lineVoltage = Number.parseFloat(document.querySelector('.input-voltage-line').value);
-        POWER_LOAD_ONE.pn1 = Number.parseFloat(document.querySelector('.input-pn1').value),
+            inputLineVoltage = Number.parseFloat(document.querySelector('.input-voltage-line').value);
+            POWER_LOAD_ONE.pn1 = Number.parseFloat(document.querySelector('.input-pn1').value),
             POWER_LOAD_TWO.pn2 = Number.parseFloat(document.querySelector('.input-pn2').value),
             LINE_ONE.length = Number.parseFloat(document.querySelector('.input-length-one').value),
             LINE_TWO.length = Number.parseFloat(document.querySelector('.input-length-two').value),
             LINE_THREE.length = Number.parseFloat(document.querySelector('.input-length-three').value);
         const POWER_FACTOR = Number.parseFloat(document.querySelector('.input-power-factor').value);
+
+        //Определение класса напряжения
+        let arrayVoltage = [35, 110, 150, 220, 330, 500, 750];
+        let voltageClass = arrayVoltage.sort( (a, b) => Math.abs(inputLineVoltage - a) - Math.abs(inputLineVoltage - b) )[0];
+
 
         //Заполняем формулы
         pn1.forEach((elem) => {
@@ -146,13 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         POWER_LOAD_TWO.qn2 = Number.parseFloat(qn2[0].textContent);
 
-        // Предварительный расчет трансформаторов
-        str1.textContent = String((POWER_LOAD_ONE.pn1 / (quantityTransformerOne * POWER_FACTOR * LOAD_FACTOR_IN_NORMAL_MODE)).toFixed(2));
-        str2.textContent = String((POWER_LOAD_TWO.pn2 / (quantityTransformerTwo * POWER_FACTOR * LOAD_FACTOR_IN_NORMAL_MODE)).toFixed(2));
+        const prelimCalcOfTrans = () => {
+            // Предварительный расчет трансформаторов
+            str1.textContent = String((POWER_LOAD_ONE.pn1 / (quantityTransformerOne * POWER_FACTOR * LOAD_FACTOR_IN_NORMAL_MODE)).toFixed(2));
+            str2.textContent = String((POWER_LOAD_TWO.pn2 / (quantityTransformerTwo * POWER_FACTOR * LOAD_FACTOR_IN_NORMAL_MODE)).toFixed(2));
+
+        };
+        prelimCalcOfTrans();
 
 
-
-        // Заполнение таблицы трансформаторов
+        // Обработка json и заполнение таблицы трансформаторов
         let url = './transformers.json';
         let response = await fetch(url);
         let arrTransformerOne = [];
@@ -161,23 +170,21 @@ document.addEventListener('DOMContentLoaded', () => {
             let data = await response.json();
 
             data.transformer.forEach(item => {
-                if (item.power >= Number(str1.textContent) && lineVoltage === item.voltage) {
+                if (item.power >= Number(str1.textContent) && voltageClass === item.voltage) {
                     arrTransformerOne.push(item);
                 }
             });
             data.transformer.forEach(item => {
-                if (item.power >= Number(str2.textContent) && lineVoltage === item.voltage) {
+                if (item.power >= Number(str2.textContent) && voltageClass === item.voltage) {
                     arrTransformerTwo.push(item);
                 }
             });
 
         } else {
             alert("Ошибка HTTP: " + response.status);
-        }
-        ;
+        };
 
-
-        let tableTransformer = (arr, date) => {
+        let fillingInTheTable = (arrTransformer, dateTransformer) => {
             const {
                 type,
                 power,
@@ -190,8 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 chargingPower,
                 resistanceR,
                 reactivityX
-            } = arr[0];
-            date.innerHTML = `
+            } = arrTransformer[0];
+            dateTransformer.innerHTML = `
              <tr>
                 <td>${type}</td>
                 <td>${power}</td>
@@ -207,114 +214,74 @@ document.addEventListener('DOMContentLoaded', () => {
             </tr>`;
         };
 
-        tableTransformer(arrTransformerOne, DATE_TR_ONE);
-        tableTransformer(arrTransformerTwo, DATE_TR_TWO);
+        fillingInTheTable(arrTransformerOne, DATE_TR_ONE);
+        fillingInTheTable(arrTransformerTwo, DATE_TR_TWO);
         const TRANSFORMER_ONE = arrTransformerOne[0],
             TRANSFORMER_TWO = arrTransformerTwo[0]
         console.log(TRANSFORMER_ONE);
         console.log(TRANSFORMER_TWO);
 
-// Проверка трансформатора на первой подстанции в нормальном режиме
-        str1nominal.forEach(elem => {
-            elem.textContent = TRANSFORMER_ONE.power;
-        });
-        checkInNormalModeOne.textContent = String((POWER_LOAD_ONE.pn1 / (quantityTransformerOne * POWER_FACTOR * TRANSFORMER_ONE.power)).toFixed(2));
 
+        //Подсветка результата
+        let check = true;
+        const lightingMode = (elem, out, max, min) => {
+            if( elem > max || elem < min) {
+                out.style.color = "#ff0000";
+                check = false;
+            }else {
+                out.style.color = "#0d5400";
+            };
+        };
 
+        // Проверка трансформатора на первой подстанции в нормальном режиме
+        const CHECK_TRANSFORMER_ONE_IN_NORMAL_MODE = () => {
+            str1nominal.forEach(elem => {
+                elem.textContent = TRANSFORMER_ONE.power;
+            });
+            checkInNormalModeOne.textContent = String((POWER_LOAD_ONE.pn1 / (quantityTransformerOne * POWER_FACTOR * TRANSFORMER_ONE.power)).toFixed(2));
+            lightingMode(Number(checkInNormalModeOne.textContent), checkInNormalModeOne, 0.75, 0.56);
+
+            if (check === false) {
+                quantityTransformerOne++;
+                prelimCalcOfTrans();
+                fillingInTheTable(arrTransformerOne, DATE_TR_ONE);
+                fillingInTheTable(arrTransformerTwo, DATE_TR_TWO);
+                CHECK_TRANSFORMER_ONE_IN_NORMAL_MODE();
+            }
+        }
+        CHECK_TRANSFORMER_ONE_IN_NORMAL_MODE();
 
 
 
         // Проверка трансформатора на первой подстанции в послеаварийном режиме
-        checkInAfterCrashOne.textContent = String((POWER_LOAD_ONE.pn1 / ((quantityTransformerOne - 1) * POWER_FACTOR * TRANSFORMER_ONE.power)).toFixed(2));
 
+        checkInAfterCrashOne.textContent = String((POWER_LOAD_ONE.pn1 / ((quantityTransformerOne - 1) * POWER_FACTOR * TRANSFORMER_ONE.power)).toFixed(2));
+        lightingMode(Number(checkInAfterCrashOne.textContent), checkInAfterCrashOne, 1.45);
 
         // Проверка трансформатора на второй подстанции в нормальном режиме
-        str2nominal.forEach(elem => {
-            elem.textContent = TRANSFORMER_TWO.power;
-        });
-        checkInNormalModeTwo.textContent = String((POWER_LOAD_TWO.pn2 / (quantityTransformerTwo * POWER_FACTOR * TRANSFORMER_TWO.power)).toFixed(2));
+        const CHECK_TRANSFORMER_TWO_IN_NORMAL_MODE = () => {
+            str2nominal.forEach(elem => {
+                elem.textContent = TRANSFORMER_TWO.power;
+            });
+            checkInNormalModeTwo.textContent = String((POWER_LOAD_TWO.pn2 / (quantityTransformerTwo * POWER_FACTOR * TRANSFORMER_TWO.power)).toFixed(2));
+            lightingMode(Number(checkInNormalModeTwo.textContent), checkInNormalModeTwo, 0.75, 0.56);
+
+            if (check === false) {
+                quantityTransformerOne++;
+                prelimCalcOfTrans();
+                fillingInTheTable(arrTransformerOne, DATE_TR_ONE);
+                fillingInTheTable(arrTransformerTwo, DATE_TR_TWO);
+                CHECK_TRANSFORMER_TWO_IN_NORMAL_MODE();
+            }
+        }
+        CHECK_TRANSFORMER_TWO_IN_NORMAL_MODE();
+
 
         // Проверка трансформатора на второй подстанции в послеаварийном режиме
         checkInAfterCrashTwo.textContent = String((POWER_LOAD_TWO.pn2 / ((quantityTransformerTwo - 1) * POWER_FACTOR * TRANSFORMER_TWO.power)).toFixed(2));
+        lightingMode(Number(checkInAfterCrashTwo.textContent), checkInAfterCrashTwo, 1.45);
 
 
-        //Подсветка результата
-        const lightingNormalMode = (elem, out) => {
-            if(elem < 0.56 && elem > 0.75) {
-                out.style.color = "red";
-            }else {
-                out.style.color = "#0d5400";
-            }
-        }
-        const lightingAfterCrashMode = (elem, out) => {
-            if(elem  > 1.45) {
-                out.style.color = "red";
-            }else {
-                out.style.color = "#0d5400";
-            }
-        }
-        lightingNormalMode(Number(checkInNormalModeOne.textContent), checkInNormalModeOne);
-        lightingNormalMode(Number(checkInNormalModeTwo.textContent), checkInNormalModeTwo);
-        lightingAfterCrashMode(Number(checkInAfterCrashOne.textContent), checkInAfterCrashOne);
-        lightingAfterCrashMode(Number(checkInAfterCrashTwo.textContent), checkInAfterCrashTwo);
-
-        // console.log(arrTransformerOne[0]);
-        // const {
-        //     typeTwo,
-        //     powerTwo,
-        //     nominalVoltageHighTwo,
-        //     nominalVoltageLowTwo,
-        //     idlingLossesTwo,
-        //     shortCircuitLossesTwo,
-        //     shortCircuitVoltageTwo,
-        //     noLoadCurrentTwo,
-        //     chargingPowerTwo,
-        //     resistanceRTwo,
-        //     reactivityXTwo
-        // } = arrTransformerTwo[0];
-        // console.log(arrTransformerTwo[0]);
-        // console.log(DATE_TR_TWO);
-        //
-        // DATE_TR_TWO.innerHTML = `
-        //      <tr>
-        //         <td>${typeTwo}</td>
-        //         <td>${powerTwo}</td>
-        //         <td>${nominalVoltageHighTwo}</td>
-        //         <td>${nominalVoltageLowTwo}</td>
-        //         <td>${idlingLossesTwo}</td>
-        //         <td>${shortCircuitLossesTwo}</td>
-        //         <td>${shortCircuitVoltageTwo}</td>
-        //         <td>${noLoadCurrentTwo}</td>
-        //         <td>${chargingPowerTwo}</td>
-        //         <td>${resistanceRTwo}</td>
-        //         <td>${reactivityXTwo}</td>
-        //     </tr>`;
-
-        // Определение Pmax
-        let powerMax;
-
-        if (POWER_LOAD_ONE.pn1 > POWER_LOAD_TWO.pn2) {
-            powerMax = POWER_LOAD_ONE.pn1;
-        } else {
-            powerMax = POWER_LOAD_TWO.pn2;
-        }
-        // определение Sтр
-
-
-        // console.log(powerMax);
-        // console.log(quantityTransformer);
-        // console.log(inputPowerFactor);
-        // console.log(loadFactor);
-        // console.log(powerTransEstimated);
-        // console.log(powerLoadOne.pn1);
-        // console.log(powerLoadTwo.pn2);
-        // console.log(powerLoadOne.qn1);
-        // console.log(powerLoadTwo.qn2);
-        // console.log(lineOne.length);
-        // console.log(lineTwo.length);
-        // console.log(lineThree.length);
-        // console.log(lineVoltage);
-        // console.log(inputPowerFactor);
     });
 });
 
